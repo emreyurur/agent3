@@ -10,6 +10,7 @@ import {
   DropdownMenuTrigger,
 } from "./ui/dropdown-menu";
 import { toast } from "sonner";
+import agentLogo from "../assets/agent3.svg";
 
 interface NavigationProps {
   currentView: string;
@@ -68,27 +69,17 @@ export function Navigation({
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
           <div
-            className="flex items-center gap-2 cursor-pointer"
+            className="flex items-center gap-1 cursor-pointer"
             onClick={() => onNavigate("home")}
           >
-            <div className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center">
-              <svg
-                width="20"
-                height="20"
-                viewBox="0 0 20 20"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M10 2L3 7V13L10 18L17 13V7L10 2Z"
-                  stroke="white"
-                  strokeWidth="2"
-                  strokeLinejoin="round"
-                />
-                <circle cx="10" cy="10" r="2" fill="white" />
-              </svg>
-            </div>
-            <span className="hidden sm:block">Agent Marketplace</span>
+            <img
+              src={agentLogo}
+              alt="Agent3"
+              className="w-12 md:w-14 lg:w-16 rounded-md object-cover ring-2 ring-white/20 shadow-sm"
+            />
+            <span className="hidden sm:block font-semibold text-lg md:text-xl ml-0">
+              Agent3
+            </span>
           </div>
 
           {/* Desktop Navigation */}
@@ -125,7 +116,7 @@ export function Navigation({
                 <Button 
                   variant="outline" 
                   size="sm" 
-                  className="hidden sm:flex items-center gap-1.5"
+                  className="hidden sm:flex items-center gap-1.5 border-2 border-primary animate-neonPulse" // Burası değiştirildi
                   onClick={onBuyCredits}
                 >
                   <PlusCircle className="w-4 h-4 text-primary" />

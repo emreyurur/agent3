@@ -53,6 +53,17 @@ module.exports = {
         md: "calc(var(--radius) - 2px)",
         sm: "calc(var(--radius) - 4px)",
       },
+      // --- YENİ EKLENEN KISIM ---
+      keyframes: {
+        neonPulse: {
+          '0%, 100%': { borderColor: 'rgba(0, 191, 255, 0.8)' }, // Parlak mavi
+          '50%': { borderColor: 'rgba(135, 206, 250, 0.8)' }, // Açık mavi
+        }
+      },
+      animation: {
+        neonPulse: 'neonPulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+      },
+      // --- YENİ EKLENEN KISIM BİTİŞİ ---
     },
   },
   plugins: [],

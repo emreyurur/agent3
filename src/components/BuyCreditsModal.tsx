@@ -26,7 +26,7 @@ interface BuyCreditsModalProps {
   onConnectWallet: () => void;
 }
 
-const API_BASE_URL = "http://172.20.10.9:3000";
+const API_BASE_URL = "https://batuhantekin.icu/agent3/";
 
 export function BuyCreditsModal({
   isOpen,
@@ -129,7 +129,7 @@ export function BuyCreditsModal({
         body: JSON.stringify({
           buyerAddress: accountAddress,
           offerId: parseInt(selectedPkg.id),
-          amount: suiCostMist, // Backend'e MIST cinsinden SUI miktarını gönderiyoruz
+           // Backend'e MIST cinsinden SUI miktarını gönderiyoruz
         }),
       });
 
