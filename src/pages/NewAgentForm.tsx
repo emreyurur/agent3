@@ -12,7 +12,7 @@ import { useWallet } from '@suiet/wallet-kit';
 import { TransactionBlock } from '@mysten/sui.js/transactions';
 import { SuccessAnimation } from '../components/SuccessAnimation';
 
-const API_BASE_URL = 'http://172.20.10.9:3000';
+const API_BASE_URL = 'https://batuhantekin.icu/agent3/';
 
 interface NewAgentFormProps {
   onNavigate: (view: string) => void;

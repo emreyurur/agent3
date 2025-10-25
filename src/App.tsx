@@ -123,7 +123,7 @@ function AppLogic() {
         const demoPoints = Math.floor(Math.random() * 10000);
         setPoints(demoPoints);
 
-        toast.success("User data loaded!", { id: 'user-data' });
+        
       } catch (error) {
         toast.error(`Failed to load user data: ${error instanceof Error ? error.message : String(error)}`, { id: 'user-data' });
         // Reset balances on error

@@ -50,7 +50,6 @@ export function WalletModal({ isOpen, onClose, onConnectSuccess }: WalletModalPr
 
           // Durum A: Profil Var (found: true)
           if (profileData.found) {
-            toast.success("Welcome back!", { id: "profile-check" });
             onConnectSuccess(wallet.adapter?.name || "Sui Wallet");
             setTimeout(() => onClose(), 500);
             return;

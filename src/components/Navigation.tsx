@@ -1,6 +1,6 @@
-import { Wallet, Menu, X, LogOut, Coins, User, Award, Copy } from "lucide-react"; // Copy ikonunu import edin
+import { Wallet, Menu, X, LogOut, Coins, User, Award, Copy, PlusCircle } from "lucide-react"; // PlusCircle eklendi
 import { Button } from "./ui/button";
-import { useState } from "react";
+import { useState, useCallback } from "react"; // useCallback eklendi
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -9,8 +9,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "./ui/dropdown-menu";
-import { toast } from "sonner"; // toast bildirimleri için
-import agentLogo from "../assets/agent3logo.png";
+import { toast } from "sonner";
 
 interface NavigationProps {
   currentView: string;
@@ -52,8 +51,8 @@ export function Navigation({
       : []),
   ];
 
-  // Kopyalama işlevini ekle
-  const handleCopyAddress = () => {
+  // Kopyalama işlevi
+  const handleCopyAddress = useCallback(() => {
     if (walletAddress) {
       navigator.clipboard.writeText(walletAddress);
       toast.success("Wallet address copied!", {
@@ -61,7 +60,7 @@ export function Navigation({
         duration: 2000,
       });
     }
-  };
+  }, [walletAddress]); // useCallback içine alındı
 
   return (
     <nav className="border-b border-border bg-card/80 backdrop-blur-sm sticky top-0 z-50">
@@ -72,12 +71,24 @@ export function Navigation({
             className="flex items-center gap-2 cursor-pointer"
             onClick={() => onNavigate("home")}
           >
-            <img
-              src={agentLogo}
-              alt="agent 3"
-              className="w-8 h-8 rounded-md object-cover"
-            />
-            <span className="hidden sm:block lowercase font-semibold">agent 3</span>
+            <div className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center">
+              <svg
+                width="20"
+                height="20"
+                viewBox="0 0 20 20"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M10 2L3 7V13L10 18L17 13V7L10 2Z"
+                  stroke="white"
+                  strokeWidth="2"
+                  strokeLinejoin="round"
+                />
+                <circle cx="10" cy="10" r="2" fill="white" />
+              </svg>
+            </div>
+            <span className="hidden sm:block">Agent Marketplace</span>
           </div>
 
           {/* Desktop Navigation */}
@@ -109,6 +120,18 @@ export function Navigation({
                   </span>
                   <span className="text-xs text-muted-foreground">Points</span>
                 </div>
+                
+                {/* YENİ: Buy Credits Butonu */}
+                <Button 
+                  variant="outline" 
+                  size="sm" 
+                  className="hidden sm:flex items-center gap-1.5"
+                  onClick={onBuyCredits}
+                >
+                  <PlusCircle className="w-4 h-4 text-primary" />
+                  <span className="text-sm">Buy Credits</span>
+                  <span className="text-sm font-semibold text-primary ml-1">{creditBalance}</span>
+                </Button>
               </>
             )}
 
@@ -140,7 +163,6 @@ export function Navigation({
                       <span className="text-sm text-muted-foreground">
                         Address
                       </span>
-                      {/* Kopyalama ikonu ve adresin olduğu kısım */}
                       <div className="flex items-center gap-2">
                         <Button
                           variant="ghost"
@@ -242,29 +264,41 @@ export function Navigation({
             ))}
             {walletConnected && (
               <>
+                {/* YENİ: Mobil için Buy Credits Butonu */}
+                <button
+                  onClick={() => {
+                    onBuyCredits();
+                    setMobileMenuOpen(false);
+                  }}
+                  className="block w-full text-left px-4 py-2 rounded-lg text-muted-foreground hover:bg-secondary/50"
+                >
+                  <Coins className="w-4 h-4 inline mr-2 text-primary" />
+                  Buy Credits ({creditBalance})
+                </button>
+                
+                {/* Mobil cüzdan detayları */}
                 <div className="px-4 py-3 bg-secondary/50 rounded-lg space-y-2">
                   {walletName && (
                     <div className="text-xs text-muted-foreground pb-1 border-b border-border">
                       Connected via {walletName}
                     </div>
                   )}
-                  {/* Mobil menüdeki adres kopyalama */}
                   <div className="flex justify-between text-sm items-center">
                     <span className="text-muted-foreground">Address</span>
                     <div className="flex items-center gap-2">
-                        <Button
-                          variant="ghost"
-                          size="icon"
-                          onClick={handleCopyAddress}
-                          className="w-7 h-7"
-                          aria-label="Copy address"
-                        >
-                          <Copy className="w-3.5 h-3.5 text-muted-foreground hover:text-foreground" />
-                        </Button>
-                        <span className="font-mono">
-                            {walletAddress?.slice(0, 6)}...
-                            {walletAddress?.slice(-4)}
-                        </span>
+                      <Button
+                        variant="ghost"
+                        size="icon"
+                        onClick={handleCopyAddress}
+                        className="w-7 h-7"
+                        aria-label="Copy address"
+                      >
+                        <Copy className="w-3.5 h-3.5 text-muted-foreground hover:text-foreground" />
+                      </Button>
+                      <span className="font-mono">
+                        {walletAddress?.slice(0, 6)}...
+                        {walletAddress?.slice(-4)}
+                      </span>
                     </div>
                   </div>
                   <div className="flex justify-between text-sm">
@@ -289,16 +323,7 @@ export function Navigation({
                     </span>
                   </div>
                 </div>
-                <button
-                  onClick={() => {
-                    onBuyCredits();
-                    setMobileMenuOpen(false);
-                  }}
-                  className="block w-full text-left px-4 py-2 rounded-lg text-muted-foreground hover:bg-secondary/50"
-                >
-                  <Coins className="w-4 h-4 inline mr-2" />
-                  Buy Credits
-                </button>
+                
                 <button
                   onClick={() => {
                     onLogout();
