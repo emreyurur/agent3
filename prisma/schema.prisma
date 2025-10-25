@@ -1,0 +1,41 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "../generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+
+model agent {
+  id          BigInt       @id @default(autoincrement())
+  name        String
+  description String?
+  image       String
+  credit      Int       @default(5)
+  categoryName  String
+  walletAddress String 
+  endpoint    String
+  inputSchema     Json
+  outputSchema Json?
+
+  category    category  @relation(fields: [categoryName], references: [name])
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+}
+
+model category {
+  id        Int       @id @default(autoincrement())
+  name      String    @unique
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  agents    agent[]
+}
