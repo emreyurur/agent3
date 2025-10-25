@@ -1,0 +1,27 @@
+/* Suiet Wallet Button Özelleştirme */
+.sui-wallet-button-wrapper {
+  width: 100%;
+}
+
+.sui-wallet-button-wrapper button {
+  width: 100% !important;
+  padding: 1rem !important;
+  border-radius: 0.5rem !important;
+  font-weight: 500 !important;
+  transition: all 0.2s !important;
+}
+
+/* Suiet modalının z-index'ini düzelt */
+[data-suiet-modal] {
+  z-index: 9999 !important;
+}
+
+/* Body scroll kilidi için */
+body.sui-modal-open {
+  overflow: hidden !important;
+}
+
+/* Suiet overlay */
+.suiet-dialog-overlay {
+  z-index: 9998 !important;
+}

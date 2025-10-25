@@ -1,0 +1,110 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --font-size: 16px;
+    --background: 250 250 250;
+    --foreground: 10 10 10;
+    --card: 255 255 255;
+    --card-foreground: 10 10 10;
+    --popover: 255 255 255;
+    --popover-foreground: 10 10 10;
+    --primary: 77 162 255;
+    --primary-foreground: 255 255 255;
+    --secondary: 244 244 245;
+    --secondary-foreground: 10 10 10;
+    --muted: 244 244 245;
+    --muted-foreground: 113 113 122;
+    --accent: 244 244 245;
+    --accent-foreground: 10 10 10;
+    --destructive: 239 68 68;
+    --destructive-foreground: 255 255 255;
+    --border: 228 228 231;
+    --input: 228 228 231;
+    --input-background: 255 255 255;
+    --switch-background: 228 228 231;
+    --ring: 77 162 255;
+    --radius: 0.5rem;
+    --chart-1: 220 70% 50%;
+    --chart-2: 160 60% 45%;
+    --chart-3: 30 80% 55%;
+    --chart-4: 280 65% 60%;
+    --chart-5: 340 75% 55%;
+  }
+
+  .dark {
+    --background: 10 10 10;
+    --foreground: 250 250 250;
+    --card: 10 10 10;
+    --card-foreground: 250 250 250;
+    --popover: 10 10 10;
+    --popover-foreground: 250 250 250;
+    --primary: 250 250 250;
+    --primary-foreground: 10 10 10;
+    --secondary: 39 39 42;
+    --secondary-foreground: 250 250 250;
+    --muted: 39 39 42;
+    --muted-foreground: 161 161 170;
+    --accent: 39 39 42;
+    --accent-foreground: 250 250 250;
+    --destructive: 220 38% 38%;
+    --destructive-foreground: 220 86% 65%;
+    --border: 39 39 42;
+    --input: 39 39 42;
+    --ring: 142 142 142;
+    --chart-1: 220 70% 50%;
+    --chart-2: 160 60% 45%;
+    --chart-3: 30 80% 55%;
+    --chart-4: 280 65% 60%;
+    --chart-5: 340 75% 55%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html {
+    font-size: var(--font-size);
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+
+  h1 {
+    @apply text-2xl font-medium leading-normal;
+  }
+
+  h2 {
+    @apply text-xl font-medium leading-normal;
+  }
+
+  h3 {
+    @apply text-lg font-medium leading-normal;
+  }
+
+  h4 {
+    @apply text-base font-medium leading-normal;
+  }
+
+  p {
+    @apply text-base font-normal leading-normal;
+  }
+
+  label {
+    @apply text-base font-medium leading-normal;
+  }
+
+  button {
+    @apply text-base font-medium leading-normal;
+  }
+
+  input {
+    @apply text-base font-normal leading-normal;
+  }
+}
