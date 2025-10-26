@@ -109,9 +109,57 @@ export const mockAgents: Agent[] = [
     totalRuns: 8234,
     image: null
   },
+  {
+    id: "10",
+    name: "X Space Editor",
+    description: "Collaborative Markdown editor with AI-assisted suggestions, smart formatting and real-time publishing.",
+    developer: "XSpace Labs",
+    category: "Editor",
+    likes: 412,
+    dislikes: 9,
+    creditCost: 6,
+    totalRuns: 2345,
+    image: null
+  },
+  {
+    id: "11",
+    name: "Translation Guru",
+    description: "High-quality multilingual translation with context-aware phrasing and tone preservation.",
+    developer: "LinguaAI",
+    category: "Text",
+    likes: 678,
+    dislikes: 12,
+    creditCost: 4,
+    totalRuns: 7845,
+    image: null
+  },
+  {
+    id: "12",
+    name: "Video Summarizer",
+    description: "Summarize long videos into short highlights with timestamps and keyframe thumbnails.",
+    developer: "ClipAI",
+    category: "Video",
+    likes: 521,
+    dislikes: 18,
+    creditCost: 9,
+    totalRuns: 4521,
+    image: null
+  },
+  {
+    id: "13",
+    name: "Prompt Tuner",
+    description: "Interactive tool to optimize prompts for better agent outputs with A/B testing.",
+    developer: "PromptWorks",
+    category: "Tooling",
+    likes: 305,
+    dislikes: 5,
+    creditCost: 3,
+    totalRuns: 1204,
+    image: null
+  }
 ];
 
-export const categories = ["All", "Text", "Image", "Code", "Data", "Audio"];
+export const categories = ["All", "Text", "Image", "Code", "Data", "Audio", "Editor", "Video", "Tooling"];
 
 export interface DeveloperAgent extends Agent {
   points: number;
